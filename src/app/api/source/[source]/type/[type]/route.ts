@@ -34,6 +34,19 @@ export async function GET(
         return NextResponse.json({ error: 'Type filtering not available for this source' }, { status: 400 });
     }
 
+    // Add type field to each result item
+    if (data && data.results && Array.isArray(data.results)) {
+      data.results = data.results.map((item: Record<string, unknown>) => ({
+        ...item,
+        type: type
+      }));
+    } else if (data && Array.isArray(data)) {
+      data = data.map((item: Record<string, unknown>) => ({
+        ...item,
+        type: type
+      }));
+    }
+
     return NextResponse.json(data);
   } catch (error) {
     console.error('Error fetching type data:', error);
