@@ -35,16 +35,18 @@ export async function GET(
     }
 
     // Add type field to each result item
-    if (data && data.results && Array.isArray(data.results)) {
-      data.results = data.results.map((item: Record<string, unknown>) => ({
-        ...item,
-        type: type
-      }));
-    } else if (data && Array.isArray(data)) {
-      data = data.map((item: Record<string, unknown>) => ({
-        ...item,
-        type: type
-      }));
+    if (data && typeof data === 'object') {
+      if (data.results && Array.isArray(data.results)) {
+        data.results = data.results.map((item: Record<string, unknown>) => ({
+          ...item,
+          type: type
+        }));
+      } else if (Array.isArray(data)) {
+        data = data.map((item: Record<string, unknown>) => ({
+          ...item,
+          type: type
+        }));
+      }
     }
 
     return NextResponse.json(data);
