@@ -12,14 +12,14 @@ export default function NotFound() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-center space-y-6 max-w-md"
+        className="text-center space-y-6 max-w-lg"
       >
-        {/* GIF */}
+        {/* GIF - 16:9 Aspect Ratio */}
         <div className="flex justify-center">
           <img
             src="https://files.catbox.moe/u8k4cu.gif"
             alt="Not Found"
-            className="w-64 h-64 object-cover rounded-2xl shadow-lg"
+            className="w-full max-w-md aspect-video object-cover rounded-2xl shadow-lg"
           />
         </div>
 
